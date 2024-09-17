@@ -1,5 +1,6 @@
 package com.service;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.dto.UsuarioDto;
@@ -22,10 +23,12 @@ public class UsuarioService {
 	@Transactional
     public Usuario cadastrarUsuario(UsuarioDto usuarioDto) {
         Usuario user = new Usuario();
+        String senhaCriptografada = new BCryptPasswordEncoder().encode(usuarioDto.senha());
+        
+        user.setSenha(senhaCriptografada);
         user.setNome(usuarioDto.nome());
         user.setEmail(usuarioDto.email());
-        user.setSenha(usuarioDto.senha());
-        user.setPerfil(usuarioDto.perfil());
+        user.setPerfil(2);
       
 
         
