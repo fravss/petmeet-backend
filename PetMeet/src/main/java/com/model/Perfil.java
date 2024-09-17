@@ -2,7 +2,8 @@ package com.model;
 
 public enum Perfil {
     ADMINISTRADOR(1),
-    FUNCIONARIO(2);
+    FUNCIONARIO(2),
+    PADRAO(3);
 
     private int valor;
 

@@ -25,7 +25,7 @@ public class UsuarioService {
         user.setNome(usuarioDto.nome());
         user.setEmail(usuarioDto.email());
         user.setSenha(usuarioDto.senha());
-        user.setPerfil(usuarioDto.perfil());
+        user.setPerfil(3);
       
 
         
