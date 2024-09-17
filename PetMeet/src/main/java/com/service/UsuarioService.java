@@ -1,5 +1,8 @@
 package com.service;
 
+import java.util.List;
+import java.util.UUID;
+
 import org.springframework.stereotype.Service;
 
 import com.dto.UsuarioDto;
@@ -31,5 +34,14 @@ public class UsuarioService {
         
         return usuarioRepository.save(user);
     }
-
+	
+	public List<Usuario> buscarUsuarios() {
+        return usuarioRepository.findAll();
+    }
+	
+	
+	@Transactional
+    public void deletarUsuario(UUID id) {
+        usuarioRepository.deleteById(id);;
+    }
 }
