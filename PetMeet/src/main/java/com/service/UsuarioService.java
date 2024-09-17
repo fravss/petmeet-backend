@@ -1,5 +1,9 @@
 package com.service;
 
+import java.util.List;
+import java.util.UUID;
+
+
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -28,11 +32,21 @@ public class UsuarioService {
         user.setSenha(senhaCriptografada);
         user.setNome(usuarioDto.nome());
         user.setEmail(usuarioDto.email());
-        user.setPerfil(2);
+        user.setPerfil(3);
+
       
 
         
         return usuarioRepository.save(user);
     }
-
+	
+	public List<Usuario> buscarUsuarios() {
+        return usuarioRepository.findAll();
+    }
+	
+	
+	@Transactional
+    public void deletarUsuario(UUID id) {
+        usuarioRepository.deleteById(id);;
+    }
 }
