@@ -7,8 +7,7 @@ import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+
 import org.springframework.web.bind.annotation.*;
 import com.model.Usuario;
 import com.service.TokenService;
@@ -22,11 +21,7 @@ import com.dto.UsuarioDto;
 public class UsuarioController {
 	@Autowired
 	private UsuarioService usuarioService;
-	@Autowired
-	private AuthenticationManager authManager;
-	
-	@Autowired
-	private TokenService tokenService;
+
 
 
 
@@ -47,13 +42,4 @@ public class UsuarioController {
     }
 	
 	
-	@PostMapping("/login")
-	public ResponseEntity login(@RequestBody AuthDto data) {
-		var usernamePassword = new UsernamePasswordAuthenticationToken(data.email(), data.senha());
-		var auth = this.authManager.authenticate(usernamePassword);
-		
-		var token = tokenService.generateToken((Usuario)auth.getPrincipal());
-		System.out.println(usernamePassword);
-		return ResponseEntity.ok(token);
-	}
 }
